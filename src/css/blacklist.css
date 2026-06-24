@@ -1,0 +1,217 @@
+/* ===================================
+   BLACKLIST — bl-* classes
+   Utilise les variables de App.css
+=================================== */
+
+/* ── Wrapper ──────────────────────────────────────── */
+.bl-wrap {
+  background    : var(--white);
+  border        : 1px solid var(--slate-200);
+  border-radius : 12px;
+  box-shadow    : var(--shadow-sm);
+  overflow      : hidden;
+  margin-top    : 1.25rem;
+}
+
+/* ── En-tête ──────────────────────────────────────── */
+.bl-head {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  padding         : 1rem 1.4rem;
+  border-bottom   : 1px solid var(--slate-200);
+  background      : var(--red-50);
+}
+
+.bl-head-left {
+  display     : flex;
+  align-items : center;
+  gap         : 0.75rem;
+}
+
+.bl-icon {
+  font-size : 1.4rem;
+}
+
+.bl-title {
+  font-family : var(--fd);
+  font-size   : 1rem;
+  font-weight : 600;
+  color       : var(--red-600);
+  margin      : 0;
+}
+
+.bl-sub {
+  font-size  : 0.75rem;
+  color      : var(--red-400);
+  margin-top : 2px;
+}
+
+.bl-count-pill {
+  background    : var(--red-100);
+  color         : var(--red-600);
+  font-size     : 0.75rem;
+  font-weight   : 700;
+  padding       : 0.25rem 0.75rem;
+  border-radius : 20px;
+}
+
+/* ── Table ────────────────────────────────────────── */
+.bl-table-wrap {
+  overflow-x: auto;
+}
+
+.bl-table {
+  width           : 100%;
+  border-collapse : collapse;
+}
+
+.bl-table thead tr {
+  background: var(--slate-50);
+}
+
+.bl-table thead th {
+  padding        : 0.65rem 1rem;
+  text-align     : left;
+  font-size      : 0.7rem;
+  font-weight    : 600;
+  letter-spacing : 0.06em;
+  text-transform : uppercase;
+  color          : var(--slate-500);
+  border-bottom  : 1px solid var(--slate-200);
+  white-space    : nowrap;
+}
+
+.bl-table tbody tr {
+  border-bottom : 1px solid var(--slate-100);
+  transition    : background 0.1s;
+}
+
+.bl-table tbody tr:hover {
+  background: var(--red-50);
+}
+
+.bl-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.bl-table td {
+  padding    : 0.75rem 1rem;
+  font-size  : 0.85rem;
+  color      : var(--slate-700);
+  vertical-align: middle;
+}
+
+.bl-td-num {
+  color     : var(--slate-400);
+  font-size : 0.78rem !important;
+  width     : 36px;
+}
+
+/* ── Membre (avatar + nom) ────────────────────────── */
+.bl-member {
+  display     : flex;
+  align-items : center;
+  gap         : 0.6rem;
+}
+
+.bl-avatar {
+  width           : 34px;
+  height          : 34px;
+  border-radius   : 8px;
+  background      : var(--red-100);
+  color           : var(--red-600);
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  font-size       : 0.75rem;
+  font-weight     : 700;
+  flex-shrink     : 0;
+  text-transform  : uppercase;
+}
+
+.bl-member-name {
+  font-weight : 600;
+  font-size   : 0.85rem;
+  color       : var(--slate-800);
+}
+
+.bl-member-phone {
+  font-size  : 0.75rem;
+  color      : var(--slate-400);
+  margin-top : 1px;
+}
+
+/* ── Email ────────────────────────────────────────── */
+.bl-email {
+  font-size : 0.82rem;
+  color     : var(--slate-500);
+}
+
+/* ── Livres tags ──────────────────────────────────── */
+.bl-livres {
+  display   : flex;
+  flex-wrap : wrap;
+  gap       : 4px;
+}
+
+.bl-livre-tag {
+  background    : var(--amber-50);
+  color         : var(--amber-600);
+  font-size     : 0.72rem;
+  font-weight   : 500;
+  padding       : 2px 8px;
+  border-radius : 6px;
+  border        : 1px solid var(--amber-100);
+}
+
+/* ── Badge retard ─────────────────────────────────── */
+.bl-retard-badge {
+  display       : inline-flex;
+  align-items   : center;
+  padding       : 0.2rem 0.65rem;
+  border-radius : 6px;
+  font-size     : 0.75rem;
+  font-weight   : 700;
+  white-space   : nowrap;
+}
+
+.bl-retard-badge--warn     { background: var(--amber-50);  color: var(--amber-600); }
+.bl-retard-badge--critical { background: var(--red-100);   color: var(--red-600);   }
+
+/* ── Badge statut bloqué ──────────────────────────── */
+.bl-status-badge {
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 4px;
+  background    : var(--red-50);
+  color         : var(--red-600);
+  font-size     : 0.72rem;
+  font-weight   : 700;
+  padding       : 0.2rem 0.65rem;
+  border-radius : 6px;
+  border        : 1px solid var(--red-100);
+}
+
+/* ── État vide ────────────────────────────────────── */
+.bl-empty {
+  text-align : center;
+  padding    : 3rem 2rem;
+}
+
+.bl-empty-icon {
+  font-size     : 2.5rem;
+  margin-bottom : 0.75rem;
+}
+
+.bl-empty p {
+  font-size   : 0.95rem;
+  font-weight : 600;
+  color       : var(--slate-600);
+  margin-bottom: 0.25rem;
+}
+
+.bl-empty span {
+  font-size : 0.82rem;
+  color     : var(--slate-400);
+}

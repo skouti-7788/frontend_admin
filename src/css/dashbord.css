@@ -1,0 +1,264 @@
+/* ═══════════════════════════════════════════════════
+   Dashboard.css
+   ═══════════════════════════════════════════════════ */
+
+/* ── Variables ───────────────────────────────────── */
+:root {
+  --dash-card-bg      : #ffffff;
+  --dash-border       : #e8e6df;
+  --dash-text-primary : #1a1a1a;
+  --dash-text-muted   : #888780;
+  --dash-purple       : #7F77DD;
+  --dash-purple-dark  : #534AB7;
+  --dash-green        : #1D9E75;
+  --dash-radius-card  : 14px;
+  --dash-radius-block : 10px;
+  --dash-radius-icon  : 10px;
+}
+
+/* ── Card ─────────────────────────────────────────── */
+.db-card {
+  background    : var(--dash-card-bg);
+  border        : 0.5px solid var(--dash-border);
+  border-radius : var(--dash-radius-card);
+  padding       : 1.1rem 1.25rem;
+}
+
+.db-card-title {
+  display     : flex;
+  align-items : center;
+  gap         : 7px;
+  font-size   : 0.88rem;
+  font-weight : 600;
+  color       : var(--dash-text-primary);
+  margin      : 0 0 14px;
+}
+
+.db-card-title span {
+  font-size : 16px;
+}
+
+/* ── Lignes (emprunts / livres) ───────────────────── */
+.db-row {
+  display       : flex;
+  align-items   : center;
+  gap           : 12px;
+  padding       : 9px 0;
+  border-bottom : 0.5px solid var(--dash-border);
+}
+
+.db-row:last-child {
+  border-bottom : none;
+}
+
+/* ── Icône statut ─────────────────────────────────── */
+.db-status-icon {
+  width           : 36px;
+  height          : 36px;
+  border-radius   : var(--dash-radius-icon);
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  font-size       : 15px;
+  flex-shrink     : 0;
+}
+
+.db-status-icon--active    { background: #EAF3DE; }
+.db-status-icon--retard    { background: #FCEBEB; }
+.db-status-icon--retourner { background: #E6F1FB; }
+.db-status-icon--default   { background: #F1EFE8; }
+
+/* ── Texte dans les lignes ────────────────────────── */
+.db-row-body {
+  flex      : 1;
+  min-width : 0;
+}
+
+.db-row-title {
+  font-size      : 0.85rem;
+  font-weight    : 600;
+  white-space    : nowrap;
+  overflow       : hidden;
+  text-overflow  : ellipsis;
+  color          : var(--dash-text-primary);
+}
+
+.db-row-meta {
+  font-size  : 0.75rem;
+  color      : var(--dash-text-muted);
+  margin-top : 2px;
+}
+
+/* ── Badge statut ─────────────────────────────────── */
+.db-badge {
+  font-size   : 0.72rem;
+  font-weight : 600;
+  padding     : 3px 9px;
+  border-radius : 20px;
+  white-space : nowrap;
+}
+
+.db-badge--active    { background: #EAF3DE; color: #27500A; }
+.db-badge--retard    { background: #FCEBEB; color: #791F1F; }
+.db-badge--retourner { background: #E6F1FB; color: #0C447C; }
+.db-badge--default   { background: #F1EFE8; color: #444441; }
+
+/* ── Graphique : mini stats ───────────────────────── */
+.db-chart-stats {
+  display       : flex;
+  gap           : 24px;
+  margin-bottom : 16px;
+}
+
+.db-chart-stat-val {
+  font-size   : 1.4rem;
+  font-weight : 700;
+  line-height : 1;
+}
+
+.db-chart-stat-val--purple { color: var(--dash-purple); }
+.db-chart-stat-val--green  { color: var(--dash-green);  }
+
+.db-chart-stat-lbl {
+  font-size  : 0.73rem;
+  color      : var(--dash-text-muted);
+  margin-top : 3px;
+}
+
+/* ── Alertes ──────────────────────────────────────── */
+.db-alerts-list {
+  display        : flex;
+  flex-direction : column;
+  gap            : 10px;
+}
+
+.db-alert-block {
+  display       : flex;
+  align-items   : center;
+  gap           : 12px;
+  border-radius : var(--dash-radius-block);
+  padding       : 12px 14px;
+}
+
+.db-alert-block--ok     { background: #EAF3DE; }
+.db-alert-block--retard { background: #FCEBEB; }
+.db-alert-block--retour { background: #E6F1FB; }
+
+.db-alert-icon {
+  width           : 36px;
+  height          : 36px;
+  border-radius   : var(--dash-radius-icon);
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  font-size       : 16px;
+  flex-shrink     : 0;
+}
+
+.db-alert-icon--ok     { background: transparent; font-size: 20px; }
+.db-alert-icon--retard { background: #F7C1C1; }
+.db-alert-icon--retour { background: #B5D4F4; }
+
+.db-alert-body { flex: 1; }
+
+.db-alert-title {
+  font-size   : 0.85rem;
+  font-weight : 600;
+}
+
+.db-alert-title--ok     { color: #27500A; }
+.db-alert-title--retard { color: #791F1F; }
+.db-alert-title--retour { color: #0C447C; }
+
+.db-alert-sub {
+  font-size  : 0.75rem;
+  margin-top : 2px;
+}
+
+.db-alert-sub--ok     { color: #3B6D11; }
+.db-alert-sub--retard { color: #A32D2D; }
+.db-alert-sub--retour { color: #185FA5; }
+
+.db-count-pill {
+  font-size     : 0.75rem;
+  font-weight   : 700;
+  padding       : 2px 9px;
+  border-radius : 20px;
+}
+
+.db-count-pill--retard { background: #F09595; color: #501313; }
+.db-count-pill--retour { background: #85B7EB; color: #042C53; }
+
+/* ── Top livres ───────────────────────────────────── */
+.db-medal {
+  width           : 24px;
+  height          : 24px;
+  border-radius   : 50%;
+  flex-shrink     : 0;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  font-size       : 0.7rem;
+  font-weight     : 700;
+}
+
+.db-medal--1 { background: #F9CB42; color: #633806; }
+.db-medal--2 { background: #B4B2A9; color: #2C2C2A; }
+.db-medal--3 { background: #EF9F27; color: #412402; }
+.db-medal--n { background: #F1EFE8; color: #444441; }
+
+.db-book-right {
+  display        : flex;
+  flex-direction : column;
+  align-items    : flex-end;
+  gap            : 4px;
+  flex-shrink    : 0;
+}
+
+.db-book-count {
+  font-size   : 0.78rem;
+  font-weight : 600;
+  color       : var(--dash-purple);
+}
+
+/* ── Barre de progression ─────────────────────────── */
+.db-progress-track {
+  height        : 4px;
+  border-radius : 4px;
+  width         : 80px;
+  background    : var(--dash-border);
+}
+
+.db-progress-bar {
+  height        : 100%;
+  border-radius : 4px;
+  background    : var(--dash-purple);
+  transition    : width 0.4s ease;
+}
+
+/* ── Tooltip graphique ────────────────────────────── */
+.db-tooltip {
+  background    : var(--dash-card-bg);
+  border        : 0.5px solid var(--dash-border);
+  border-radius : 8px;
+  padding       : 7px 13px;
+  font-size     : 0.8rem;
+  color         : var(--dash-text-primary);
+}
+
+.db-tooltip-label {
+  font-weight   : 600;
+  margin-bottom : 2px;
+}
+
+.db-tooltip-value {
+  color: var(--dash-purple);
+}
+
+/* ── État vide ────────────────────────────────────── */
+.db-empty {
+  font-size   : 0.85rem;
+  color       : var(--dash-text-muted);
+  text-align  : center;
+  padding     : 20px 0;
+}

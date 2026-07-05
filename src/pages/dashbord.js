@@ -12,8 +12,8 @@ import {
 // ─── Badge statut ──────────────────────────────────────────────────────────
 const STATUS_CFG = {
   active:    { iconClass: 'db-status-icon--active',    badgeClass: 'db-badge--active',    label: 'Actif',     symbol: '📖' },
-  retard:    { iconClass: 'db-status-icon--retard',    badgeClass: 'db-badge--retard',    label: 'Retard',    symbol: '⚠️'  },
-  Retourner: { iconClass: 'db-status-icon--retourner', badgeClass: 'db-badge--retourner', label: 'Retourné',  symbol: '✅'  },
+  retard:    { iconClass: 'db-status-icon--retard',    badgeClass: 'db-badge--retard',    label: 'Retard',    symbol: '⚠️' },
+  Retourner: { iconClass: 'db-status-icon--retourner', badgeClass: 'db-badge--retourner', label: 'Retourné',  symbol: '✅' },
 };
 const DEFAULT_STATUS = { iconClass: 'db-status-icon--default', badgeClass: 'db-badge--default', label: '—', symbol: '📅' };
 

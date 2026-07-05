@@ -12,8 +12,10 @@ import imgdach from './images/dashboard.png'
 import imgBook from './images/books.png'
 import imgAdh from './images/people.png'
 import imgEmp from './images/give-book.png'
+import imgAch from  './images/purchases.png'
 import "./style.css";
 import Achats from "./pages/Achats";
+import api from "./api/axois";
 export default function App(){
   const {book} = useBooks();
   const {Adherent} = useAdherents();
@@ -22,8 +24,14 @@ export default function App(){
   const [page,setPage]=useState("dashboard");
   const [books,setBooks]=useState([]);
   const [members,setMembers]=useState([]);
+  const [adminLog,setAdminLog] = useState({})
   // const [blacklist,setBlacklist]=useState([]);
+
+   
   useEffect(()=>{
+  const ok  =  JSON.parse(localStorage.getItem("ok")) || false;
+   
+  if(ok || ok === null ){ setAuth(true)}
   if(book) setBooks(book);
   if(Adherent) setMembers(Adherent);
   if(emprunts) setLoans(emprunts);
@@ -43,13 +51,29 @@ export default function App(){
     {id:"books",label:"Livres",icon:imgBook},
     {id:"members",label:"Adhérents",icon:imgAdh},
     {id:"loans",label:"Emprunts",icon:imgEmp},
-    {id:"achats",label:"Achats",icon:imgEmp},
-    {id:"blacklist",label:"Liste Noire",icon:imgEmp},
+    {id:"achats",label:"Achats",icon:imgAch},
+    // {id:"blacklist",label:"Liste Noire",icon:imgEmp},
   ];
   const titles={dashboard:"Tableau de Bord",books:"Catalogue des Livres",members:"Gestion des Adhérents",loans:"Gestion des Emprunts",blacklist:"Liste Noire"};
   const today=new Date().toLocaleDateString("fr-FR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  const handlelogout = async ()=>{
+       try{
+          // window.location.href = '/login';
+          const  res = await api.post('/admin/logout')
+          if(res.data.message){
+          localStorage.removeItem("ok");
+          localStorage.removeItem('token') ;
+          localStorage.removeItem('admin') ;
+          setAuth(false)
+          }
+          
+         }catch(err){console.log(err)}
+     
+       
+        }
+  const admin = JSON.parse(localStorage.getItem('admin'))
 
-  if(!auth) return <><Login onLogin={()=>setAuth(true)}/><Toasts toasts={toasts}/></>;
+  if(!auth) return <><Login setAdminLog={setAdminLog} onLogin={()=>setAuth(true)}/><Toasts toasts={toasts}/></>;
 
   return (
     <>
@@ -66,10 +90,10 @@ export default function App(){
           </nav>
           <div className="sb-footer">
             <div className="sb-user">
-              <div className="avatar">AD</div>
-              <div><span>Administrateur</span><small>admin@library.ma</small></div>
+              <div className="avatar">{admin?.username?.charAt(0).toUpperCase() || '?'}</div>
+              <div><span>Administrateur</span><small>{admin.email}</small></div>
             </div>
-            <button className="btn-logout" onClick={()=>setAuth(false)}> Se déconnecter</button>
+            <button className="btn-logout" onClick={handlelogout}> Se déconnecter</button>
           </div>
         </aside>
         <div className="main">
@@ -78,7 +102,7 @@ export default function App(){
             <span className="topbar-date">{today}</span>
           </header>
           <main className="page">
-            {page==="dashboard"&&<Dashboard books={books} imgBook={imgBook} imgAdh={imgAdh} imgEmp={imgEmp} imgdach={imgdach} members={members} loans={loans}/>}
+            {page==="dashboard"&&<Dashboard  books={books} imgBook={imgBook} imgAdh={imgAdh} imgEmp={imgEmp} imgdach={imgdach} members={members} loans={loans}/>}
             {page==="books"&&<Books books={books} setBooks={setBooks} showToast={showToast}/>}
             {page==="members"&&<Members setMembers={setMembers} members={members} books={books} showToast={showToast}/>}
             {page==="loans"&&<Loans loans={loans} setLoans={setLoans} books={books} setBooks={setBooks} members={members} showToast={showToast}/>}

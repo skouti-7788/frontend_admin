@@ -14,12 +14,13 @@ export function useAchats() {
 
       // Le backend renvoie { id, user_id, livre_id, date_achat, status, status_paye, user:{...}, livre:{...} }
       const mapped = res.data.map(achat => ({
-        // id           : achat.id,
+        id           : achat.id,
         user_id      : achat.user_id ?? null,
         livre_id     : achat.livre_id ?? null,
         date_achat   : achat.date_achat ?? null,
         status       : achat.status ?? "En attente",
         status_paye  : achat.status_paye ?? "Non payé",
+        type_livre   : achat.type_livre  
         // Relations eager-loaded depuis Laravel with(['user','livre'])
         // user         : achat.user ?? null,
         // livre        : achat.livre ?? null,
@@ -39,8 +40,10 @@ export function useAchats() {
         user_id     : form.user_id,
         livre_id    : form.livre_id,
         date_achat  : form.date_achat || new Date().toISOString().split('T')[0],
-        status      : form.status || "En attente",
+        status      : form.status || "Physique",
         status_paye : form.status_paye || "Non payé",
+        // type_livre : form.type_livre || "Physique",
+
       };
       const res = await axios.post(apiAchats, payload);
       return res.data;

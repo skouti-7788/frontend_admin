@@ -1,12 +1,7 @@
-import { useEffect } from "react";
 import axios from "../api/axois";
-import { useDispatch } from "react-redux";
-
 const apiAchats = "/acheter";
 
 export function useAchats() {
-  const dispatch = useDispatch();
-
   // ── FETCH ──────────────────────────────────────────────────────────────
   const fetchAchats = async () => {
     try {

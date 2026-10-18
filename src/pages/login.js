@@ -1,7 +1,7 @@
 import api from "../api/axois";
 import { useState } from "react";
 
-export default function Login({onLogin,setAdminLog}){
+export default function Login({onLogin}){
   const [emailRegis,setEmailRegis]=useState("");
 
   const [passLog,setPassLog]=useState("");
@@ -19,8 +19,8 @@ export default function Login({onLogin,setAdminLog}){
   const [err,setErr]=useState("");
   const [isSignUp,setIsSignUp] = useState(false);
 
-  const [infoAdminRegis,setInfoAdminRegis]=useState({});
-  const [infoAdminLog,setInfoAdminLog]=useState({});
+  // const [infoAdminRegis,setInfoAdminRegis]=useState({});
+  // const [infoAdminLog,setInfoAdminLog]=useState({});
   console.log(fieldErrors)
 
   const submit = async (e) => {
@@ -35,7 +35,7 @@ export default function Login({onLogin,setAdminLog}){
         password_confirmation: passConferme,
       });
 
-      setInfoAdminRegis(res.data);
+      // setInfoAdminRegis(res.data);
        setErr(res.data.message);
     } else {
          
@@ -43,8 +43,8 @@ export default function Login({onLogin,setAdminLog}){
         username: usernameLog,
         password: passLog,
       });
-      setAdminLog(res.data.admin)
-      setInfoAdminLog(res.data);
+      // setAdminLog(res.data.admin)
+      // setInfoAdminLog(res.data);
       // console.log(res.data);  
       JSON.parse(localStorage.getItem("admin"))
       if (res.data.token){

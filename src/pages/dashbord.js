@@ -74,7 +74,7 @@ export default function Dashboard({ books = [], members = [], loans: loansProp =
   const available    = books.reduce((s, b) => s + (parseInt(b.status) || 0), 0);
   const overdueCount = loans.filter(l => l.status === 'retard').length;
   const returnCount  = loans.filter(l => l.status === 'Retourner').length;
-  const activeCount  = loans.filter(l => l.status === 'active').length;
+  // const activeCount  = loans.filter(l => l.status === 'active').length;
 
   // ── Graphique 6 derniers mois ──
   const MONTHS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];

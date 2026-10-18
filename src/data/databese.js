@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios  from "../api/axois";
-import { SetUpdateStu,ClearUpdateStu,SetLoans }   from '../app/redux/emruntsSlice';
+import { SetUpdateStu,SetLoans }   from '../app/redux/emruntsSlice';
 import { useDispatch } from 'react-redux';
 import  { useBlackliste } from "./dataBlackliste";
 export  const CATS = ["Roman","Science","Histoire","Informatique","Philosophie","Art","Jeunesse","Biographie"];
@@ -183,8 +183,23 @@ export function useEmprunts() {
   const {checkBlackliste} = useBlackliste()
   const [emprunts, setEmprunts] = useState([]);
   const dispatch = useDispatch();
-
-  const fetchEmprunts = async () => {
+  const checkdate = useCallback( async (id, date_retour_prevue, date_emprunt,adherent_id,status) => {
+    console.log(id, date_retour_prevue, date_emprunt, adherent_id, status)
+    try {
+      const res = await axios.post('/emprunts/check', {
+        id: id,
+        date_retour_prevue: date_retour_prevue,
+        date_emprunt: date_emprunt,
+        status: status,
+      });
+      // dispatch(ClearUpdateStu());
+      dispatch(SetUpdateStu(res.data));
+      checkBlackliste(adherent_id)
+    } catch (err) {
+      console.error(err);
+    }
+  },[dispatch,checkBlackliste]);
+  const fetchEmprunts =useCallback( async () => {
     try {
       const res = await axios.get(apiEmprunts);
       const mapped = res.data.map(b => ({
@@ -204,11 +219,11 @@ export function useEmprunts() {
     } catch (err) {
       console.error("Fetch error:", err);
     }
-  };
+  },[dispatch,checkdate]);
 
   useEffect(() => {
     fetchEmprunts();
-  }, []);
+  }, [fetchEmprunts]);
 
   // ➕ ADD (Corrigé pour renvoyer la donnée de la DB avec le vrai ID)
   const addEmprunts = async (form) => {
@@ -252,22 +267,7 @@ export function useEmprunts() {
   };
 
   // chekdate
-  const checkdate = async (id, date_retour_prevue, date_emprunt,adherent_id,status) => {
-    console.log(id, date_retour_prevue, date_emprunt, adherent_id, status)
-    try {
-      const res = await axios.post('/emprunts/check', {
-        id: id,
-        date_retour_prevue: date_retour_prevue,
-        date_emprunt: date_emprunt,
-        status: status,
-      });
-      // dispatch(ClearUpdateStu());
-      dispatch(SetUpdateStu(res.data));
-      checkBlackliste(adherent_id)
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  
 
   return { emprunts, checkdate, fetchEmprunts, addEmprunts, updateEmprunts, deleteEmprunts };
 }

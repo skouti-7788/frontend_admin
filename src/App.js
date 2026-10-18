@@ -24,7 +24,7 @@ export default function App(){
   const [page,setPage]=useState("dashboard");
   const [books,setBooks]=useState([]);
   const [members,setMembers]=useState([]);
-  const [adminLog,setAdminLog] = useState({})
+  // const [adminLog,setAdminLog] = useState({})
   // const [blacklist,setBlacklist]=useState([]);
 
    
@@ -73,7 +73,7 @@ export default function App(){
         }
   const admin = JSON.parse(localStorage.getItem('admin'))
 
-  if(!auth) return <><Login setAdminLog={setAdminLog} onLogin={()=>setAuth(true)}/><Toasts toasts={toasts}/></>;
+  if(!auth) return <><Login   onLogin={()=>setAuth(true)}/><Toasts toasts={toasts}/></>;
 
   return (
     <>
@@ -84,7 +84,7 @@ export default function App(){
             {/* <div className="nav-section">Navigation</div> */}
             {nav.map(n=>(
               <div key={n.id} className={`nav-item${page===n.id?" active":""}`} onClick={()=>setPage(n.id)}>
-                <img className="nav-icon" src={n.icon} title={n.label}/>{n.label}
+                <img className="nav-icon" src={n.icon} alt={n.label} title={n.label}/>{n.label}
               </div>
             ))}
           </nav>

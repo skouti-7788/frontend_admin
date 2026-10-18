@@ -1,25 +1,13 @@
   import { useState, useEffect } from "react";
   import { useEmprunts } from "../data/databese";
-  import axios from "../api/axois";
-  import { useDispatch, useSelector } from "react-redux";
-  import { SetUpdateStu } from "../app/redux/emruntsSlice";
-import { useBlackliste } from "../data/dataBlackliste";
+   
   export default function Loans({ loans, setLoans,setMembers, books, setBooks, members, showToast }) {
     const {fetchEmprunts, addEmprunts, updateEmprunts, deleteEmprunts } = useEmprunts();
-    const {checkBlackliste} = useBlackliste()
-    const [showadd,setShowAdd] = useState(false);
+     const [showadd,setShowAdd] = useState(false);
     const [idDel,setIdDel] = useState('')
     const [searsh,setSearsh] = useState('');
     const [okDel,setOkDel] = useState(false);
     const [update,setUpdate] = useState({});
-    const [adherentId,setAdherentId] = useState(null);
-    const setUpdateStu = useSelector((state) => state.emprunt.setUpdateStu);
-    const reduxloans = useSelector((state) => state.emprunt.loans);
-
-    const dispatch = useDispatch();
-    // const [updateStau,setUpdateStu] = useState({})
-    // const [sta,setSta] = useState(false)
-    // console.log(updateStau)
     const { checkdate} = useEmprunts()
     const [form,setForm] = useState(
           { 
@@ -51,7 +39,7 @@ import { useBlackliste } from "../data/dataBlackliste";
       
     }
       // fetchEmprunts()
-    },[loans,verifidate]) 
+    },[loans,verifidate,checkdate]) 
   
     const dateretard = (date_retour_prevue)=>{
           const retour_prevue = new Date(date_retour_prevue);
@@ -80,7 +68,7 @@ import { useBlackliste } from "../data/dataBlackliste";
     }
     useEffect(()=>{
           if(update && update.id){updateEmprunts(update.id,update)} 
-          },[update])
+          },[update,updateEmprunts])
     const hendledelete = (id)=>{
           setOkDel(true);
           setIdDel(id)
@@ -121,7 +109,7 @@ import { useBlackliste } from "../data/dataBlackliste";
     )});
     useEffect(() => {
      fetchEmprunts();
-    }, []);
+    }, [fetchEmprunts]);
     return (
       <div>
         {/* ── Card ── */}

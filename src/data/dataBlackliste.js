@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setBlacklistes } from "../app/redux/blacklistesSlice";
@@ -9,7 +9,7 @@ export function useBlackliste() {
   const dispatch = useDispatch();
 
   // ── FETCH ──────────────────────────────────────────────────────────────
-  const fetchBlacklistes = async () => {
+  const fetchBlacklistes = useCallback( async () => {
     try {
       const res = await axios.get(apiBlacklistes);
 
@@ -28,11 +28,11 @@ export function useBlackliste() {
     } catch (err) {
       console.error("Fetch blackliste error:", err);
     }
-  };
+  },[dispatch]);
 
   useEffect(() => {
     fetchBlacklistes();
-  }, []);
+  }, [fetchBlacklistes]);
 
   // ── ADD ────────────────────────────────────────────────────────────────
   const addBlackliste = async (form) => {
@@ -73,17 +73,17 @@ export function useBlackliste() {
 
   // ── CHECK (vérifie si un adhérent est bloqué) ──────────────────────────
   // Le backend attend: { adherent_id }  →  renvoie { blocked, message, emprunts_retard }
-  const checkBlackliste = async (adherent_id) => {
-    try {
-      const res = await axios.get(`${apiBlacklistes}/check`, {
-        params: { adherent_id }
-      });
-      return res.data; // { blocked: true/false, message, emprunts_retard: [] }
-    } catch (err) {
-      console.error("Erreur check blackliste:", err.response?.data || err);
-      return null;
-    }
-  };
+  // const checkBlackliste = async (adherent_id) => {
+  //   try {
+  //     const res = await axios.get(`${apiBlacklistes}/check`, {
+  //       params: { adherent_id }
+  //     });
+  //     return res.data; // { blocked: true/false, message, emprunts_retard: [] }
+  //   } catch (err) {
+  //     console.error("Erreur check blackliste:", err.response?.data || err);
+  //     return null;
+  //   }
+  // };
 
   return {
     fetchBlacklistes,

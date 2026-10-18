@@ -61,7 +61,6 @@ export default function Achats({ loans, setLoans, books, setBooks, members, show
       return updated;
     });
   };
-  console.log(form)
   const handleAddAchat = async () => {
     if (!form.livre_id) {
       setError("Veuillez renseigner l'utilisateur et le livre.");

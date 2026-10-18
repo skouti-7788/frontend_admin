@@ -21,8 +21,7 @@ export default function Login({onLogin}){
 
   // const [infoAdminRegis,setInfoAdminRegis]=useState({});
   // const [infoAdminLog,setInfoAdminLog]=useState({});
-  console.log(fieldErrors)
-
+ 
   const submit = async (e) => {
   e.preventDefault();
   try {
@@ -66,7 +65,6 @@ export default function Login({onLogin}){
       // if(res.data.admin === null){ setErr("Email ou mot de passe incorrect.")}
         
      //      }
-     console.log(res)
     }
   } catch (err) {
        setErr("");

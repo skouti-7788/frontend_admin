@@ -73,23 +73,23 @@ export function useBlackliste() {
 
   // ── CHECK (vérifie si un adhérent est bloqué) ──────────────────────────
   // Le backend attend: { adherent_id }  →  renvoie { blocked, message, emprunts_retard }
-  // const checkBlackliste = async (adherent_id) => {
-  //   try {
-  //     const res = await axios.get(`${apiBlacklistes}/check`, {
-  //       params: { adherent_id }
-  //     });
-  //     return res.data; // { blocked: true/false, message, emprunts_retard: [] }
-  //   } catch (err) {
-  //     console.error("Erreur check blackliste:", err.response?.data || err);
-  //     return null;
-  //   }
-  // };
+  const checkBlackliste = async (adherent_id) => {
+    try {
+      const res = await axios.get(`${apiBlacklistes}/check`, {
+        params: { adherent_id }
+      });
+      return res.data; // { blocked: true/false, message, emprunts_retard: [] }
+    } catch (err) {
+      console.error("Erreur check blackliste:", err.response?.data || err);
+      return null;
+    }
+  };
 
   return {
     fetchBlacklistes,
     addBlackliste,
     updateBlackliste,
     deleteBlackliste,
-    // checkBlackliste,
+    checkBlackliste,
   };
 }
